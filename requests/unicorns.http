@@ -1,0 +1,17 @@
+DELETE https://crudcrud.com/api/315198f758904bc58b39bab6fdaab0ca/unicorn/672d5ec43af7c503e8d5d45e
+Accept: application/json
+
+###
+GET https://crudcrud.com/api/315198f758904bc58b39bab6fdaab0ca/unicorn/672d5ec43af7c503e8d5d45e
+Accept: application/json
+
+###
+POST https://crudcrud.com/api/315198f758904bc58b39bab6fdaab0ca/unicorn
+Content-Type: application/json
+
+{
+  "name": "Masha",
+  "tailcolor": "Red"
+}
+
+###
