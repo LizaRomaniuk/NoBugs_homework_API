@@ -6,6 +6,7 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.example.api.UnicornRequests;
+import org.example.api.models.Unicorn;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
@@ -24,8 +25,11 @@ public class SimpleTest {
 
     @Test
     public void userShoudBeAbleCreateUnicorn() {
+        // сериализация из JSON в объект и наоборот
+        Unicorn unicorn = new Unicorn("Masha","Red");
+
         UnicornRequests unicornRequests = new UnicornRequests();
-        unicornRequests.createUnicorn("{\n" + "  \"name\": \"Masha\",\n" + "  \"tailcolor\": \"Red\"\n" + "}");
+        unicornRequests.createUnicorn(unicorn.toJson());
     }
 
     @Test
@@ -43,7 +47,8 @@ public class SimpleTest {
 
     @Test
     public void userShouldBeAbleChangeTailColorOfExitingUnicorn() {
-        String id = UnicornRequests.createUnicorn("{\n" + "  \"name\": \"Masha\",\n" + "  \"tailcolor\": \"Red\"\n" + "}");
+        Unicorn unicorn = new Unicorn( "Masha",  "Red");
+        String id = UnicornRequests.createUnicorn(unicorn.toJson());
         given()
                 .body("{\n" + "  \"name\": \"Masha\",\n" + "  \"tailcolor\": \"Blue\"\n" + "}")
                 .contentType(ContentType.JSON)
